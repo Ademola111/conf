@@ -1,0 +1,39 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<div>
+    <a href="/admin/breakout"><button class="btn btn-lg btn-success">All Breakout</button></a></div>
+<div class="row">
+    <div class="col mt-5">
+        <form method="post" action="" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <div class="col">
+                <label>Image</label>
+                <input type="file" name="image">
+            </div>
+            <div class="col mt-5">
+                <label>Title</label>
+                <input type="text" name="title" placeholder="">
+            </div>
+            <div class="col mt-5">
+                <label>Skill</label>
+                <select class="form-select" name="skill">
+                    <option selected value="">Choose Skill Level</option>
+                    {% for u in s %}
+                        <option value="{{u.skill_id}}">{{u.skill_name}}</option>
+                    {% endfor %}
+                  </select>
+            </div>
+            <div class="col mt-5">
+                <button class="btn btn-dark">Add Breakout</button>
+            </div>
+        </form>
+    </div>
+</div>
+</main>
+{% endblock %}

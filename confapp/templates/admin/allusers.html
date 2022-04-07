@@ -1,0 +1,103 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block content %}
+<section class="page-section bg-light" style="min-height:90vh">
+    <div class="container-fluid">
+ <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                 
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="userhome.html">Dashboard</a>
+                     
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="profile.html">My Profile</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Payments</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="breakout.html">Break Out Session</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Log Out</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <h1 class="mt-4">Break Out Sessions</h1>
+                    <p>Edit your profile by completing the form below.Edit your profile by completing the form below.Edit your profile by completing the form below.Edit your profile by completing the form below.</p>
+
+ 
+                     
+                </div>
+
+                <div class="container">
+                                       <div class="row">
+<div class="col-10 offset-1">
+   <div class="table-responsive">
+      
+       <table class="table table-striped" width="80%">
+        
+       <tr>
+           <th>#</th>
+           <th>Fullname</th>
+           <th>Email</th>
+           <th>Address</th>
+           <th>Phone</th>
+           <th>State</th>
+           <th>Skill</th>
+       </tr>
+       
+      {# {% for b in users %}
+        <tr>
+           <td>{{loop.index}}</td>
+           <td>{{b.user_fname}} {{b.user_lname}}</td>
+           <td>{{b.user_email}}</td>
+           <td>{{b.user_address}}</td>
+           <td>{{b.user_phone}}</td>
+           <td>{{b.mystateobj.state_name}}</td>
+           <td>{{b.myskillobj.skill_name}}</td>
+       </tr>
+       {% endfor %}#}
+       {#{% for x,y,z in users %}
+       <tr>
+          <td>{{loop.index}}</td>
+          <td>{{x.user_fname}} {{x.user_lname}}</td>
+          <td>{{x.user_email}}</td>
+          <td>{{x.user_address}}</td>
+          <td>{{x.user_phone}}</td>
+          <td>{{y.state_name}}</td>
+          <td>{{z.skill_name}}</td>
+      </tr>
+      {% endfor %}#}
+      {#{% for a in users %}
+        <tr>
+           <td>{{loop.index}}</td>
+           <td>{{a[0].user_fname}} {{a[0].user_lname}}</td>
+           <td>{{a[0].user_email}}</td>
+           <td>{{a[0].user_address}}</td>
+           <td>{a[0].user_phone}}</td>
+           <td>{{a[1].state_name}}</td>
+           <td>{{a[2].skill_name}}</td>
+       </tr>
+       {% endfor %}#}
+       {% for x,y in users %}
+       <tr>
+          <td>{{loop.index}}</td>
+          <td>{{x.user_fname}} {{x.user_lname}}</td>
+          <td>{{x.user_email}}</td>
+          <td>{{x.user_address}}</td>
+          <td>{{x.user_phone}}</td>
+          <td>{{y.state_name}}</td>
+          <td>{{y.state_id}}</td>
+      </tr>
+      {% endfor %}
+   </table>
+
+   </div>
+</div>
+                    
+                
+
+            </div>
+        </div>    
+    </div>
+</section>
+{% endblock %}

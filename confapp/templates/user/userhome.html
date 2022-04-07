@@ -1,0 +1,42 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+<section class="page-section bg-light" style="min-height:90vh">
+    <div class="container-fluid">
+ <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                 
+                <div class="list-group list-group-flush">
+                    {% with k = get_flashed_messages() %}
+                    {% for i in k %}
+                        {{i}}
+                    {% endfor %}
+                    {% endwith %}
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="userhome.html"> Welcome to your Dashboard, {{userdeets.user_fname}}</a>
+                     
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('editprofile')}}">My Profile</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Payments</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('user_breakout')}}">Break Out Session</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('showbreakout')}}">Show Break Out</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Log Out</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <h1 class="mt-4">Dashboard</h1>
+                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+                     
+                </div>
+
+                
+
+            </div>
+        </div>    
+    </div>
+</section>
+       
+{% endblock pagecontent %}

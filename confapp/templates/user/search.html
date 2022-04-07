@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search or check availability</title>
+    <script src="{{url_for('static', filename='js/all.js')}}"></script>
+       
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col">
+                <h1>Sign Up</h1>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <label>Enter Username</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <button type="button" class="btn btn-danger" id="check" name="button">Check Username</button>
+            </div>
+        </div>
+   
+        <div class="row mb-2">
+            <div class="col">
+                <label>Enter Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <button type="submit" class="btn btn-success" id="btnsubmit" name="button">Submit</button>
+            </div>
+        </div>
+    </div>
+     <!--jquery-->
+     <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+
+     <script type="text/javascript">
+         $(document).ready(function(){
+            $('#check').click(function(){
+                var username=$('#username').val()
+                data2send="us="+username
+
+                $.ajax({
+                    url:"/check/result",
+                    type:'get',
+                    data:data2send,
+                    success:function(msg){
+                        if (msg == "Username is taken"){
+                            alert(msg)
+                            $('#btnsubmit').attr('disabled','disabled')
+                        }else{
+                            alert(msg)
+                            $('#btnsubmit').removeAttr('disabled')
+                        }
+                    },
+                    error:function(err){}
+                })
+            })  
+         })
+     </script>
+</body>
+</html>

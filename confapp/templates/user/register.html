@@ -1,0 +1,92 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent  %}
+
+
+        <!-- Portfolio Grid-->
+        <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">REGISTER HERE</h2>
+                    <h3 class="section-subheading text-muted">A range of interesting topics relevant to the conference</h3>
+                </div>
+                {% with k = get_flashed_messages() %}
+                {% for i in k %}
+                  {{i}}
+                {% endfor %}
+                {% endwith %}
+                <div class="row">
+                    
+                    <div class="col-8 offset-2" style="background-color: white; padding: 3em">
+                        
+         <form action="{{url_for('register')}}" method="post">          
+<div class="row mb-2">
+  <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+  <div class="col-md-6">
+    <input type="text" class="form-control" placeholder="Enter your email address" name="email">
+  </div>
+  <div class="col-md-6">
+<p class="small"> Your Email address will be your username</p>
+  </div>
+ 
+</div>
+
+                   <div class="row mb-2">
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Choose a Password" name="pwd1">
+  </div>
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Confirm your Password" name="pwd2">
+  </div>
+</div>
+
+
+
+<div class="row mb-2">
+  <div class="col">
+    <input type="text" class="form-control" placeholder="First name" name="fname">
+  </div>
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Last name" name="lname">
+  </div>
+</div>
+
+<div class="row mb-2">
+  <div class="col">
+    <select class="form-select" name="state">
+  <option selected value="">Choose State</option>
+  {% for m in p %}
+      <option value="{{m.state_id}}">{{m.state_name}}</option>
+  {% endfor %}
+</select>
+  </div>
+  <div class="col">
+     <select class="form-select" name="skill">
+  <option selected value="">Choose Skill Level</option>
+  {% for u in s %}
+      <option value="{{u.skill_id}}">{{u.skill_name}}</option>
+  {% endfor %}
+</select>
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-md-6 offset-3">
+    <div class="d-grid">
+        <button class="btn btn-lg btn-outline-primary">Register</button>
+    </div>
+  </div>
+   
+ 
+</div>
+</form>
+
+                    </div>
+                     
+                    
+                </div>
+            </div>
+        </section>
+  
+       
+       
+{% endblock %}

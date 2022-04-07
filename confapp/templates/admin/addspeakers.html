@@ -1,0 +1,42 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title%}
+
+{% endblock %}
+
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Speakers</h1>
+         
+      </div>
+
+      
+
+      <div style="text-align:right"><a href=''>Speaker List</a></div>
+      
+
+    <form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Speaker</label>
+    <input type="text" class="form-control" name="speaker">
+     
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Facebook Handle</label>
+    <input type="text" class="form-control" name="fb">
+  </div>
+ <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Twitter Handle</label>
+    <input type="text" class="form-control" name="fb">
+  </div>
+  <div class="mb-3" style="text-align:right">
+    <button class="btn btn-lg btn-success">Add Speaker</button>
+  </div>
+</form>
+
+    </main>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title%}
+
+{% endblock %}
+
+{% block content %}
+<style>
+    div form{
+        margin-left:250px;
+    }
+</style>
+<main>
+    <div class="row mt-5">
+        <div class="col">
+            <form method="post" action="" enctype="multipart/form-data">
+                <input type="file" name="image">
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                <button>Upload</button>
+                
+            </form>
+        </div>
+    </div>
+
+</main>
+{% endblock%}

@@ -1,0 +1,89 @@
+{% extends 'user/layout.html' %}
+
+
+{% block pagecontent %}
+<section class="page-section bg-light" style="min-height:90vh">
+    <div class="container-fluid">
+ <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                 
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('userhome')}}">Dashboard</a>
+                     
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('editprofile')}}">My Profile</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Payments</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('user_breakout')}}">Break Out Session</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Log Out</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <h1 class="mt-4">Break Out Sessions</h1>
+                    <p>Edit your profile by completing the form below.Edit your profile by completing the form below.Edit your profile by completing the form below.Edit your profile by completing the form below.</p>
+
+ 
+                     
+                </div>
+
+                <div class="container">
+                                       <div class="row">
+<div class="col-10 offset-1">
+   <div class="table-responsive">
+       <form method="POST" action="/user/sendbreakout">
+       <table class="table table-striped" width="80%">
+        
+       <tr>
+           <th>#</th>
+           <th><input type="checkbox" id="selectall"></th>
+           <th>Title</th>
+           <th>Skill Level</th>
+           <th>Price</th>
+           <th>Icon</th>
+           <th>Action</th>
+       </tr>
+       {% if breakout %}
+       {% for b in breakout %}
+        <tr>
+           <td>{{loop.index}}</td>
+           <td><input name="bid" type="checkbox" id="selectall" value="{{b.break_id}}"></td>
+           <td>{{b.break_title}}</td>
+           <td>{{b.skillobj.skill_name}}</td>
+           <td>{{b.break_amt}}</td>
+           {% if b.break_picture=="" %}
+           <td><img src="/static/assets/img/portfolio/1.jpg" width="100"></td>
+           {% else %}
+           <td><img src="/static/assets/img/{{b.break_picture}}" width="100"></td>
+           {% endif %}
+           <td><a href="{/user/breakout/{{b.break_id}}">Details</a></td>
+       </tr>
+       {% endfor %}
+       {% else %}
+       <td colspan="6">No breakout session for your skill yet</td>
+       {% endif %}
+      
+   </table>
+
+   </div>
+</div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                           <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                                <button type="submit" class="btn btn-outline-primary btn-lg">Sign Up For Selected Sessions</button>
+                           
+                        </div>
+                    </div>
+                </div>
+            </form>
+                
+
+            </div>
+        </div>    
+    </div>
+</section>
+       
+{% endblock %}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search or check availability</title>
+    <script src="{{url_for('static', filename='js/all.js')}}"></script>
+       
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col">
+                <h1>Sign Up</h1>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <label>State</label>
+                <select class="form-control" name="lga" id="state">
+                    <option value="">Choose State</option>
+                    {% for s in state %}
+                    <option value="{{s.state_id}}">{{s.state_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <label>L.G.A</label>
+                <select class="form-control" name="lga" id="lga">
+                    <option value="">Choose L.G.A</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col">
+                <button type="submit" class="btn btn-success" id="btnsubmit" name="button">Submit Form</button>
+            </div>
+        </div>
+    </div>
+     <!--jquery-->
+     <script src="{{url_for('static', filename='js/jquery-3.6.0.min.js')}}"></script>
+
+     <script type="text/javascript">
+         $(document).ready(function(){
+            $('#state').change(function(){
+                var stateid = $(this).val()
+                var csrf = "{{ csrf_token() }}"
+                data2send = {"stateid":stateid, "csrf_token":csrf}
+
+                ///make ajax call
+                $.ajax({
+                    url:"/demo/lga",
+                    data:data2send,
+                    type:'post',
+                    success:function(msg){
+                    $('#lga').html(msg)
+                    }
+                })
+            })  
+         })
+     </script>
+</body>
+</html>

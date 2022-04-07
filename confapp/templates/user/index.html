@@ -1,0 +1,173 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+
+ <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">The Largest gathering of Software Developers in Africa</div>
+                <div class="masthead-heading text-uppercase">
+                    Lagos Distrupts
+                </div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="{{url_for('register')}}">Register</a>
+            </div>
+        </header>
+       
+        <!-- Services-->
+        <section class="page-section" id="login" style="background-color: #ffc80027;">
+            <div class="container">
+               <div class="row">
+                   <div class="col">
+                       {% with m = get_flashed_messages() %}
+                        {% if m %}
+                            {{m}}
+                        {% endif %}
+                       {% endwith %}
+                   </div>
+               </div>
+                <div class="row text-center"> 
+                    <h2 class="section-heading text-uppercase">LOGIN HERE</h2>
+                    <div class="col-md-8 offset-2">
+<form action="{{url_for('submit_login')}}" method="POST">                     
+    <div class="row mb-2">
+        <div class="col">
+            {{login.csrf_token}}
+            {{login.username.errors}}
+            {{login.username(class_="form-control form-control-lg", placeholder="email address")}}
+        </div>
+    
+        <div class="col">
+            {{login.pwd.errors}}
+            {{login.pwd(class_="form-control form-control-lg", placeholder="Enter your password")}}
+        </div>
+        <div class="col d-grid">
+            {{login.loginbtn(class_="btn btn-outline-warning")}}
+        </div>
+    </div>
+</form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio Grid-->
+        <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">BREAK OUT SESSIONS</h2>
+                    <h3 class="section-subheading text-muted">A range of interesting topics relevant to the conference</h3>
+                </div>
+                <div class="row">
+                    {% for b in break_deets%}
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <!-- Portfolio item 4-->
+                        
+                        <div class="portfolio-item">
+                            {% if b.break_picture !="" %}
+                            <a href="#">
+                                
+                                <img class="img-fluid" src="/static/assets/img/{{b.break_picture}}" alt="..." />
+                            </a>
+
+                            {% else %}
+
+                            <a href="#">
+                                
+                                <img class="img-fluid" src="/static/assets/img/dom2.jpg" alt="..." />
+                            </a>
+                           
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">{{b.break_title}}</div>
+                                <div class="portfolio-caption-subheading text-muted">{{b.skillobj.skill_name}}</div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                    {% endfor %}
+                    
+                    
+                </div>
+            </div>
+        </section>
+        <!-- About-->
+        <section class="page-section" id="hostels">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Partner Hostels</h2>
+                    <h3 class="section-subheading text-muted">You can lodge at any of the following verified accomodation.</h3>
+                </div>
+                 <div class="card-group">
+                     {% set hostel_data = hostel_json.get('data') %}
+                     {% if hostel_data != None: %}
+                     {% for h in hostel_data: %}
+  <div class="card">
+    <img src="{{url_for('static',filename='assets/img/dom3.jpg')}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">The Dynasty</h5>
+      <p class="card-text">Treat yourself with an awesome georgeousness by staying in this all-female hostel</p>
+    </div>
+    <div class="card-footer text-center">
+      <button class="btn btn-sm btn-primary">View Details</button>
+    </div>
+    
+  </div>
+  <div class="card">
+    <img src="{{h.pix}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{h.name}}</h5>
+      <p class="card-text">{{h.type}}</p>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-sm btn-primary">View Details</button>
+    </div>
+  </div>
+  
+</div>
+{% endfor %}
+    {% endif %}
+                
+            </div>
+        </section>
+        <!-- Team-->
+        <section class="page-section bg-light" id="speakers">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">SPEAKERS</h2>
+                    <h3 class="section-subheading text-muted">WE have amazing experts lined up for the conference</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="{{url_for('static', filename='assets/img/team/1.jpg')}}" alt="..." />
+                            <h4>Parveen Anand</h4>
+                            <p class="text-muted">Lead Designer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="{{url_for('static',filename='assets/img/team/2.jpg')}}" alt="..." />
+                            <h4>Diana Petersen</h4>
+                            <p class="text-muted">Lead Marketer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="{{url_for('static', filename='assets/img/team/3.jpg')}}" alt="..." />
+                            <h4>Larry Parker</h4>
+                            <p class="text-muted">Lead Developer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+       
+{% endblock %}       

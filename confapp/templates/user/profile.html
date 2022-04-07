@@ -1,0 +1,99 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+<section class="page-section bg-light" style="min-height:90vh">
+  <div class="container-fluid">
+    <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                 
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#">Dashboard</a>
+                     
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url_for('editprofile')}}">My Profile</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Payments</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="breakout.html">Break Out Session</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Log Out</a>
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <h1 class="mt-4">My Profile</h1>
+                    <p>Edit your profile by completing the form below.</p>
+                    {% with m = get_flashed_messages() %}
+              {% for i in m %}
+              <p>{{i}}</p>
+              {% endfor %}
+              {% endwith %}
+
+ 
+                     
+                </div>
+
+                <div class="container">
+    <div class="row">
+      <div class="col-10 offset-1">
+        {#<form class="row g-3" method="post" action="/user/update/{{userdeets.user_id}}"> you can use this when you are passing id #}
+          <form class="row g-3" method="post" action="/user/update/">
+            <div class="col-md-6">
+              
+              <label for="inputEmail4" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="inputEmail4" value="{{userdeets.user_fname}}" name="fname">
+            </div>
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="inputPassword4" value="{{userdeets.user_lname}}" name="lname">
+              <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            </div>
+        
+            <div class="col-md-6">
+              <label for="inputState" class="form-label">Skill Level {{userdeets.user_skillid}}</label>
+              <select id="inputState" class="form-select" name="skill">
+                
+                {% for a in all_levels %}
+                {% if a.skill_id == userdeets.user_skillid %}
+                <option value="{{a.skill_id}}" selected>{{a.skill_name}}</option>
+                {% else %}
+                <option value="{{a.skill_id}}">{{a.skill_name}}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="inputAddress2" class="form-label">Phone No</label>
+              <input type="text" class="form-control"  value="{{userdeets.user_phone}}" name="phone">
+            </div>
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">Address</label>
+              <input type="text" class="form-control" id="inputCity" value="{{userdeets.user_address}}" name="address">
+            </div>
+            <div class="col-md-6">
+              <label for="inputState" class="form-label">State</label>
+              <select id="inputState" class="form-select" name="state">
+              {% for b in all_state %}
+              {% if b.state_id == userdeets.user_stateid %}
+              <option value="{{b.state_id}}" selected>{{b.state_name}}</option>
+              {% else %}
+              <option value="{{b.state_id}}">{{b.state_name}}</option>
+              {% endif %}
+              {% endfor %}
+              </select>
+            </div>
+        
+        
+              <div class="col-12 text-center">
+                <button type="submit" class="btn btn-outline-primary btn-lg">Update Details</button>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>    
+</div>
+</section>
+       
+{% endblock %}

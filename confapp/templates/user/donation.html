@@ -1,0 +1,23 @@
+{% extends 'user/layout.html' %}
+{% block title %}
+
+{% endblock %}
+
+{% block pagecontent %}
+<div class="row">
+    <div class="col">
+        <h1>Donation</h1>
+        <p>Kindly donate in support of this coming event</p>
+    </div>
+    <div>
+        <form method="POST" action="{{url_for('donation')}}">
+            <input name="csrf_token" type="hidden" value="{{csrf_token()}}">
+            <input name="fullname" type="text" placeholder="Fullname">
+            <input name="email" type="email" placeholder="E-mail">
+            <input name="amt" type="text" placeholder="amount">
+            <button type="submit">Donate Now</button>
+        </form>
+    </div>
+</div>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'admin/adminbase.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<div style="text-align:right">
+    <a href="/admin/addbreakout"><button class="btn btn-lg btn-success">Add Breakout</button></a></div>
+      
+
+      <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Speaker</th>
+      <th scope="col">LinkedIn</th>
+      <th scope="col">Facebook</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if break_deets %}
+    {% for b in break_deets %}
+    
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      {% if b.break_picture !="" %}
+      <td><img src="/static/assets/img/{{b.break_picture}}" width="100px" alt="pic"></td>
+      {% else %}
+      <td><img src="/static/assets/img/dom2.jpg" width="100px" alt="pic"></td>
+      {% endif %}
+      <td>{{b.break_title}}</td>
+      <td>{{b.break_skillid}}</td>
+      <td><a href="/admin/breakout/delete/{{b.break_id}}" class="btn btn-danger"> Delete </a></td>
+    </tr>
+    
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+    </main>
+  </div>
+</div>
+</main>
+{% endblock %}
